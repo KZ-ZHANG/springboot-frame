@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!--配置生成器 -->
+<generatorConfiguration>
+    <!--<classPathEntry location="C:/Users/ZKZ/Downloads/mysql-connector-java-8.0.13.jar"/>-->
+    <context id="platform" defaultModelType="flat" targetRuntime="MyBatis3">
+        <!-- 生成的Java文件的编码-->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化java代码-->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码-->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <!--去除自动生成的注释-->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--<plugin type="com.zkz.mybatis.DbPlugin"></plugin>-->
+        <!--<commentGenerator type="com.zkz.mybatis.MyGenerator">-->
+            <!--&lt;!&ndash; <property name="suppressDate" value="true"/>-->
+            <!--<property name="suppressAllComments" value="true"/> &ndash;&gt;-->
+            <!--<property name="AddJPA" value="true"/>-->
+        <!--</commentGenerator>-->
+
+        <!-- 数据库连接配置 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/sys?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC"
+                        userId="root"
+                        password="root" />
+
+        <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--配置生成的实体包
+            targetPackage：生成的实体包位置，默认存放在src目录下
+            targetProject：目标工程名-->
+        <javaModelGenerator targetPackage="com.zkz.entity" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 实体包对应映射文件位置及名称，默认存放在src目录下 -->
+        <sqlMapGenerator targetPackage="mapping" targetProject="./src/main/resources" >
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!--生成Dao类存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zkz.mapper"  targetProject="./src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!--表-->
+        <!--<table tableName="user">-->
+            <!--<property name="ignoreQualifiersAtRuntime" value="true"/>-->
+            <!--&lt;!&ndash; 指定是否只生成domain类，如果设置为true，只生成domain类，如果还配置了sqlMapGenerator，那么在mapper XML文件中，只生成resultMap元素 &ndash;&gt;-->
+            <!--<property name="modelOnly" value="true"/>-->
+            <!--&lt;!&ndash; 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate &ndash;&gt;-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+            <!--&lt;!&ndash;将text/blob等类型的字段设置为varchar类型，防止生成时不在一起&ndash;&gt;-->
+            <!--&lt;!&ndash;<columnOverride column="ssl_cipher" jdbcType="VARCHAR"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<columnOverride column="x509_issuer" jdbcType="VARCHAR"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<columnOverride column="x509_subject" jdbcType="VARCHAR"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<columnOverride column="authentication_string" jdbcType="VARCHAR"/>&ndash;&gt;-->
+        <!--</table>-->
+        <table tableName="sys_config">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 指定是否只生成domain类，如果设置为true，只生成domain类，如果还配置了sqlMapGenerator，那么在mapper XML文件中，只生成resultMap元素 -->
+            <property name="modelOnly" value="true"/>
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!--将text/blob等类型的字段设置为varchar类型，防止生成时不在一起-->
+            <!--<columnOverride column="ssl_cipher" jdbcType="VARCHAR"/>-->
+            <!--<columnOverride column="x509_issuer" jdbcType="VARCHAR"/>-->
+            <!--<columnOverride column="x509_subject" jdbcType="VARCHAR"/>-->
+            <!--<columnOverride column="authentication_string" jdbcType="VARCHAR"/>-->
+        </table>
+    </context>
+</generatorConfiguration>
